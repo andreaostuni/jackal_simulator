@@ -9,15 +9,15 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     world_file = PathJoinSubstitution(
-        [FindPackageShare('jackal_gazebo'),
-        'worlds',
-        'jackal_race.world'],
+        [FindPackageShare('elevator_sim'),
+         'worlds',
+         'elevator_pic4ser.world'],
     )
 
     gazebo_launch = PathJoinSubstitution(
         [FindPackageShare('jackal_gazebo'),
-        'launch',
-        'gazebo.launch.py'],
+         'launch',
+         'gazebo.launch.py'],
     )
 
     gazebo_sim = IncludeLaunchDescription(
