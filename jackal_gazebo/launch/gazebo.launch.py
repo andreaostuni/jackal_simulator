@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, SetEnvironmentVariable
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, SetEnvironmentVariable, GroupAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import EnvironmentVariable, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 
@@ -33,12 +33,21 @@ def generate_launch_description():
         [FindPackageShare('jackal_gazebo'), 'config', 'control.yaml']
     )
 
+    config_jackal_localization = PathJoinSubstitution(
+        [FindPackageShare('jackal_gazebo'), 'config', 'localization.yaml']
+    )
+
+    config_twist_mux = PathJoinSubstitution(
+        [FindPackageShare('jackal_gazebo'), 'config', 'twist_mux.yaml']
+    )
+
     # Get URDF via xacro
     robot_description_command = [
         PathJoinSubstitution([FindExecutable(name='xacro')]),
         ' ',
         PathJoinSubstitution(
-            [FindPackageShare('jackal_description'), 'urdf', 'jackal.urdf.xacro']
+            [FindPackageShare('jackal_description'),
+             'urdf', 'jackal.urdf.xacro']
         ),
         ' ',
         'is_sim:=true',
@@ -55,7 +64,8 @@ def generate_launch_description():
                  'description.launch.py']
             )
         ),
-        launch_arguments=[('robot_description_command', robot_description_command)]
+        launch_arguments=[('robot_description_command',
+                           robot_description_command)]
     )
 
     # Gazebo server
@@ -90,19 +100,6 @@ def generate_launch_description():
         output='screen',
     )
 
-    spawn_jackal_velocity_controller = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['jackal_velocity_controller', '-c', '/controller_manager'],
-        output='screen',
-    )
-
-    spawn_joint_state_broadcaster = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
-        output='screen',
-    )
     # Launch jackal_control/control.launch.py
     launch_jackal_control = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution(
@@ -111,6 +108,39 @@ def generate_launch_description():
         launch_arguments=[('robot_description_command', robot_description_command),
                           ('is_sim', 'True')]
     )
+
+    spawn_jackal_localization = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_node',
+        output='screen',
+        parameters=[config_jackal_localization]
+    )
+
+    spawn_twist_mux = Node(
+        package='twist_mux',
+        executable='twist_mux',
+        name='twist_mux',
+        remappings={
+            ('/cmd_vel_out', '/jackal_velocity_controller/cmd_vel_unstamped')},
+        parameters=[config_twist_mux],
+    )
+
+    spawn_jackal_controllers = GroupAction([
+        Node(
+            package='controller_manager',
+            executable='spawner',
+            arguments=['jackal_velocity_controller',
+                       '-c', '/controller_manager'],
+            output='screen',
+        ),
+        Node(
+            package='controller_manager',
+            executable='spawner',
+            arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
+            output='screen',
+        )
+    ])
 
     # Launch jackal_control/teleop_base.launch.py which is various ways to tele-op
     # the robot but does not include the joystick. Also, has a twist mux.
@@ -122,8 +152,9 @@ def generate_launch_description():
     ld.add_action(gz_resource_path)
     ld.add_action(gzserver)
     ld.add_action(gzclient)
-    ld.add_action(spawn_jackal_velocity_controller)
-    ld.add_action(spawn_joint_state_broadcaster)
+    ld.add_action(spawn_jackal_controllers)
+    ld.add_action(spawn_jackal_localization)
+    ld.add_action(spawn_twist_mux)
     ld.add_action(launch_jackal_description)
     ld.add_action(spawn_robot)
     ld.add_action(launch_jackal_control)
