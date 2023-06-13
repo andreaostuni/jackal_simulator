@@ -15,7 +15,7 @@ find_package(xacro REQUIRED)
 
 install(
   DIRECTORY
-    launch worlds
+    launch worlds config
   DESTINATION
     share/${PROJECT_NAME}
 )
