@@ -1,10 +1,11 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, SetEnvironmentVariable, GroupAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import EnvironmentVariable, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import EnvironmentVariable, FindExecutable, LaunchConfiguration, PathJoinSubstitution, Command
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 
 from pathlib import Path
 
@@ -50,7 +51,7 @@ def generate_launch_description():
              'urdf', 'jackal.urdf.xacro']
         ),
         ' ',
-        'is_sim:=true',
+        'gazebo_sim:=true',
         ' ',
         'gazebo_controllers:=',
         config_jackal_velocity_controller,
@@ -106,25 +107,12 @@ def generate_launch_description():
             [FindPackageShare('jackal_control'), 'launch', 'control.launch.py']
         )),
         launch_arguments=[('robot_description_command', robot_description_command),
-                          ('is_sim', 'True')]
+                          ('gazebo_sim', 'True'),
+                          ('config_jackal_velocity', config_jackal_velocity_controller),
+                          ('config_jackal_localization', config_jackal_localization),
+                        ]
     )
 
-    spawn_jackal_localization = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_node',
-        output='screen',
-        parameters=[config_jackal_localization]
-    )
-
-    spawn_twist_mux = Node(
-        package='twist_mux',
-        executable='twist_mux',
-        name='twist_mux',
-        remappings={
-            ('/cmd_vel_out', '/jackal_velocity_controller/cmd_vel_unstamped')},
-        parameters=[config_twist_mux],
-    )
 
     spawn_jackal_controllers = GroupAction([
         Node(
@@ -146,15 +134,15 @@ def generate_launch_description():
     # the robot but does not include the joystick. Also, has a twist mux.
     launch_jackal_teleop_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare('jackal_control'), 'launch', 'teleop_base.launch.py'])))
+            [FindPackageShare('jackal_control'), 'launch', 'teleop_base.launch.py'])),
+            launch_arguments=[('config_twist_mux', config_twist_mux)]
+    )
 
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(gz_resource_path)
     ld.add_action(gzserver)
     ld.add_action(gzclient)
     ld.add_action(spawn_jackal_controllers)
-    ld.add_action(spawn_jackal_localization)
-    ld.add_action(spawn_twist_mux)
     ld.add_action(launch_jackal_description)
     ld.add_action(spawn_robot)
     ld.add_action(launch_jackal_control)
