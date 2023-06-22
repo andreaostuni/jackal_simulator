@@ -51,7 +51,7 @@ def generate_launch_description():
              'urdf', 'jackal.urdf.xacro']
         ),
         ' ',
-        'gazebo_sim:=true',
+        'gazebo_sim:=True',
         ' ',
         'gazebo_controllers:=',
         config_jackal_velocity_controller,
@@ -108,11 +108,12 @@ def generate_launch_description():
         )),
         launch_arguments=[('robot_description_command', robot_description_command),
                           ('gazebo_sim', 'True'),
-                          ('config_jackal_velocity', config_jackal_velocity_controller),
-                          ('config_jackal_localization', config_jackal_localization),
-                        ]
+                          ('config_jackal_velocity',
+                           config_jackal_velocity_controller),
+                          ('config_jackal_localization',
+                           config_jackal_localization),
+                          ]
     )
-
 
     spawn_jackal_controllers = GroupAction([
         Node(
@@ -135,7 +136,7 @@ def generate_launch_description():
     launch_jackal_teleop_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution(
             [FindPackageShare('jackal_control'), 'launch', 'teleop_base.launch.py'])),
-            launch_arguments=[('config_twist_mux', config_twist_mux)]
+        launch_arguments=[('config_twist_mux', config_twist_mux)]
     )
 
     ld = LaunchDescription(ARGUMENTS)
