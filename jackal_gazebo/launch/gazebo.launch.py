@@ -94,9 +94,9 @@ def generate_launch_description():
                    'jackal',
                    '-topic',
                    'robot_description',
-                   '-x -3.45',
-                   '-y 0.05',
-                   '-z 0.31',
+                   '-x 0.0',
+                   '-y 0.0',
+                   '-z 0.0',
                    '-Y 0.0'],
         output='screen',
     )
