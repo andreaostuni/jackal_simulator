@@ -1,8 +1,10 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, SetEnvironmentVariable, GroupAction
+from launch.actions import (DeclareLaunchArgument, ExecuteProcess,
+                            IncludeLaunchDescription, SetEnvironmentVariable,
+                            GroupAction, RegisterEventHandler)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import EnvironmentVariable, FindExecutable, LaunchConfiguration, PathJoinSubstitution, Command
-
+from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
@@ -131,6 +133,14 @@ def generate_launch_description():
         )
     ])
 
+    # Make sure spawn_jackal_controllers starts after spawn_robot
+    jackal_controllers_spawn_callback = RegisterEventHandler(
+        OnProcessExit(
+            target_action=spawn_robot,
+            on_exit=[spawn_jackal_controllers],
+        )
+    )
+
     # Launch jackal_control/teleop_base.launch.py which is various ways to tele-op
     # the robot but does not include the joystick. Also, has a twist mux.
     launch_jackal_teleop_base = IncludeLaunchDescription(
@@ -143,7 +153,7 @@ def generate_launch_description():
     ld.add_action(gz_resource_path)
     ld.add_action(gzserver)
     ld.add_action(gzclient)
-    ld.add_action(spawn_jackal_controllers)
+    ld.add_action(jackal_controllers_spawn_callback)
     ld.add_action(launch_jackal_description)
     ld.add_action(spawn_robot)
     ld.add_action(launch_jackal_control)
