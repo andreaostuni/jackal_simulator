@@ -3,11 +3,14 @@ from launch.actions import (DeclareLaunchArgument, ExecuteProcess,
                             IncludeLaunchDescription, SetEnvironmentVariable,
                             GroupAction, RegisterEventHandler)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import EnvironmentVariable, FindExecutable, LaunchConfiguration, PathJoinSubstitution, Command
+from launch.substitutions import (EnvironmentVariable, FindExecutable,
+                                  LaunchConfiguration, PathJoinSubstitution,
+                                  Command)
 from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
+from launch.conditions import IfCondition
 
 from pathlib import Path
 
@@ -16,6 +19,10 @@ from ament_index_python.packages import get_package_share_directory
 ARGUMENTS = [
     DeclareLaunchArgument('world_path', default_value='',
                           description='The world path, by default is empty.world'),
+    DeclareLaunchArgument('prefix', default_value='',
+                          description='The prefix of the world file'),
+    DeclareLaunchArgument('use_gazebo_controllers', default_value='True',
+                          description='Whether to start the gazebo controllers'),
 ]
 
 
@@ -31,6 +38,7 @@ def generate_launch_description():
     # Launch args
     world_path = LaunchConfiguration('world_path')
     prefix = LaunchConfiguration('prefix')
+    use_gazebo_controllers = LaunchConfiguration('use_gazebo_controllers')
 
     config_jackal_velocity_controller = PathJoinSubstitution(
         [FindPackageShare('jackal_gazebo'), 'config', 'control.yaml']
@@ -52,6 +60,9 @@ def generate_launch_description():
             [FindPackageShare('jackal_description'),
              'urdf', 'jackal.urdf.xacro']
         ),
+        ' ',
+        'use_gazebo_controllers:=',
+        use_gazebo_controllers,
         ' ',
         'gazebo_sim:=True',
         ' ',
@@ -124,12 +135,14 @@ def generate_launch_description():
             arguments=['jackal_velocity_controller',
                        '-c', '/controller_manager'],
             output='screen',
+            condition=IfCondition(use_gazebo_controllers),
         ),
         Node(
             package='controller_manager',
             executable='spawner',
             arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
             output='screen',
+            condition=IfCondition(use_gazebo_controllers),
         )
     ])
 
