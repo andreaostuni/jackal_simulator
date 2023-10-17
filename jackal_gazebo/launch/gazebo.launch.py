@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 from launch.actions import (DeclareLaunchArgument, ExecuteProcess,
                             IncludeLaunchDescription, SetEnvironmentVariable,
-                            GroupAction, RegisterEventHandler)
+                            GroupAction, RegisterEventHandler, Shutdown)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import (EnvironmentVariable, FindExecutable,
                                   LaunchConfiguration, PathJoinSubstitution,
@@ -10,7 +10,7 @@ from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
-from launch.conditions import IfCondition
+from launch.conditions import IfCondition, UnlessCondition
 
 from pathlib import Path
 
@@ -154,6 +154,23 @@ def generate_launch_description():
         )
     )
 
+    stop_jackal_cmd = ['ros2 topic pub /stop/cmd_vel geometry_msgs/msg/Twist ',
+                       '"{ linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"', ]
+
+    stop_jackal = RegisterEventHandler(
+        OnProcessExit(
+            target_action=spawn_robot,
+            on_exit=[ExecuteProcess(
+                cmd=stop_jackal_cmd,
+                output='log',
+                shell=True,
+                on_exit=Shutdown(),
+                condition=UnlessCondition(
+                    use_gazebo_controllers)
+            )],
+        )
+    )
+
     # Launch jackal_control/teleop_base.launch.py which is various ways to tele-op
     # the robot but does not include the joystick. Also, has a twist mux.
     launch_jackal_teleop_base = IncludeLaunchDescription(
@@ -171,5 +188,6 @@ def generate_launch_description():
     ld.add_action(spawn_robot)
     ld.add_action(launch_jackal_control)
     ld.add_action(launch_jackal_teleop_base)
+    ld.add_action(stop_jackal)
 
     return ld
