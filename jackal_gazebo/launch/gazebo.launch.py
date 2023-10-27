@@ -125,7 +125,8 @@ def generate_launch_description():
                            config_jackal_velocity_controller),
                           ('config_jackal_localization',
                            config_jackal_localization),
-                          ]
+                          ],
+        condition = IfCondition(use_gazebo_controllers)
     )
 
     spawn_jackal_controllers = GroupAction([
