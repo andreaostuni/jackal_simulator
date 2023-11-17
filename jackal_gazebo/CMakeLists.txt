@@ -15,9 +15,10 @@ find_package(xacro REQUIRED)
 
 install(
   DIRECTORY
-    launch worlds config
+    launch worlds config models
   DESTINATION
     share/${PROJECT_NAME}
 )
+ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/${PROJECT_NAME}.dsv.in")
 
 ament_package()

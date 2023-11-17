@@ -10,7 +10,7 @@ def generate_launch_description():
 
     world_file = PathJoinSubstitution(
         # ['tree_terrain2.world']
-        ['empty.world']
+        ['scenario1.world']
         # # [FindPackageShare('elevator_sim'),
         # #  'worlds',
         # #

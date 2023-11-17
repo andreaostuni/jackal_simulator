@@ -30,9 +30,9 @@
                 <mu2>50</mu2>
               </ode>
             </friction>
-            <bounce/>
+            <bounce />
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
           <max_contacts>10</max_contacts>
@@ -47,7 +47,6 @@
           </geometry>
           <material>
             <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
               <name>Gazebo/Grey</name>
             </script>
           </material>
@@ -98,12 +97,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -133,12 +132,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -168,12 +167,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -203,12 +202,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -238,12 +237,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -273,12 +272,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -308,12 +307,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -343,12 +342,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -378,12 +377,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -413,12 +412,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -451,12 +450,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -488,12 +487,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -525,12 +524,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -563,12 +562,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -598,12 +597,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -633,12 +632,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -668,12 +667,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -703,12 +702,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -738,12 +737,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -773,12 +772,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -808,12 +807,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -843,12 +842,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -878,12 +877,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -917,12 +916,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -952,12 +951,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -987,12 +986,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1022,12 +1021,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1057,12 +1056,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1092,12 +1091,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1127,12 +1126,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1162,12 +1161,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1197,12 +1196,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1232,12 +1231,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1270,12 +1269,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1307,12 +1306,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1344,12 +1343,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1382,12 +1381,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1417,12 +1416,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1452,12 +1451,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1487,12 +1486,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1522,12 +1521,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1557,12 +1556,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1592,12 +1591,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1627,12 +1626,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1662,12 +1661,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1697,12 +1696,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1736,12 +1735,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1771,12 +1770,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1806,12 +1805,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1841,12 +1840,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1876,12 +1875,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1911,12 +1910,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1946,12 +1945,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -1981,12 +1980,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2016,12 +2015,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2051,12 +2050,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2090,12 +2089,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2125,12 +2124,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2160,12 +2159,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2195,12 +2194,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2230,12 +2229,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2265,12 +2264,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2300,12 +2299,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2335,12 +2334,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2370,12 +2369,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2405,12 +2404,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2443,12 +2442,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2480,12 +2479,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2518,12 +2517,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2553,12 +2552,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2588,12 +2587,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2623,12 +2622,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2658,12 +2657,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2693,12 +2692,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2728,12 +2727,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2763,12 +2762,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2798,12 +2797,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -2833,12 +2832,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
@@ -3413,12 +3412,12 @@
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
-            <bounce/>
+            <bounce />
             <friction>
-              <ode/>
+              <ode />
             </friction>
             <contact>
-              <ode/>
+              <ode />
             </contact>
           </surface>
         </collision>
