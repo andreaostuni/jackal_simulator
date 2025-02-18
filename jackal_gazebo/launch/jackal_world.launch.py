@@ -8,11 +8,13 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
-    world = LaunchConfiguration('world')
-    world_arg = DeclareLaunchArgument(
-        'world',
-        default_value='empty.world',
-        description='Full path to world model file to load or a Gazebo world file name',
+    world_file = PathJoinSubstitution(
+        # ['tree_terrain2.world']
+        ['scenario1.world']
+        # # [FindPackageShare('elevator_sim'),
+        # #  'worlds',
+        # #
+        # ['elevator_pic4ser.world'],
     )
 
     gazebo_launch = PathJoinSubstitution(
