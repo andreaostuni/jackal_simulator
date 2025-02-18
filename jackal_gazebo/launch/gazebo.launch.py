@@ -1,78 +1,44 @@
 from launch import LaunchDescription
-from launch.actions import (
-    DeclareLaunchArgument,
-    ExecuteProcess,
-    IncludeLaunchDescription,
-    SetEnvironmentVariable,
-    GroupAction,
-    RegisterEventHandler,
-)
+from launch.actions import (DeclareLaunchArgument, ExecuteProcess,
+                            IncludeLaunchDescription, SetEnvironmentVariable,
+                            GroupAction, RegisterEventHandler, Shutdown)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import (
-    EnvironmentVariable,
-    FindExecutable,
-    LaunchConfiguration,
-    PathJoinSubstitution,
-    Command,
-)
+from launch.substitutions import (EnvironmentVariable, FindExecutable,
+                                  LaunchConfiguration, PathJoinSubstitution,
+                                  Command)
 from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
+from launch.conditions import IfCondition, UnlessCondition
 
 from pathlib import Path
 
 from ament_index_python.packages import get_package_share_directory
 
 ARGUMENTS = [
-    DeclareLaunchArgument(
-        "world_path",
-        default_value="",
-        description="The world path, by default is empty.world",
-    ),
-    # Declare launch arguments for robot spawn position
-    DeclareLaunchArgument(
-        "x",
-        default_value="0.0",
-        description="The x-coordinate of the robot spawn position",
-    ),
-    DeclareLaunchArgument(
-        "y",
-        default_value="0.0",
-        description="The y-coordinate of the robot spawn position",
-    ),
-    DeclareLaunchArgument(
-        "z",
-        default_value="0.0",
-        description="The z-coordinate of the robot spawn position",
-    ),
-    DeclareLaunchArgument(
-        "yaw",
-        default_value="0.0",
-        description="The yaw of the robot spawn position",
-    ),
+    DeclareLaunchArgument('world_path', default_value='',
+                          description='The world path, by default is empty.world'),
+    DeclareLaunchArgument('prefix', default_value='',
+                          description='The prefix of the world file'),
+    DeclareLaunchArgument('use_gazebo_controllers', default_value='True',
+                          description='Whether to start the gazebo controllers'),
 ]
 
 
 def generate_launch_description():
-    gz_resource_path = SetEnvironmentVariable(
-        name="GAZEBO_MODEL_PATH",
-        value=[
-            EnvironmentVariable("GAZEBO_MODEL_PATH", default_value=""),
-            "/usr/share/gazebo-11/models/:",
-            str(
-                Path(get_package_share_directory("jackal_description")).parent.resolve()
-            ),
-            ':',
-            str(
-                Path(get_package_share_directory("velodyne_description")).parent.resolve()
-            ),
-        ],
-    )
+
+    # gz_resource_path = SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[
+    #     EnvironmentVariable('GAZEBO_MODEL_PATH',
+    #                         default_value=''),
+    #     '/usr/share/gazebo-11/models/:',
+    #     str(Path(get_package_share_directory('jackal_description')).
+    #         parent.resolve())])
 
     # Launch args
-    world_path = LaunchConfiguration("world_path")
-    prefix = LaunchConfiguration("prefix")
+    world_path = LaunchConfiguration('world_path')
+    prefix = LaunchConfiguration('prefix')
+    use_gazebo_controllers = LaunchConfiguration('use_gazebo_controllers')
 
     config_jackal_velocity_controller = PathJoinSubstitution(
         [FindPackageShare("jackal_gazebo"), "config", "control.yaml"]
@@ -93,10 +59,13 @@ def generate_launch_description():
         PathJoinSubstitution(
             [FindPackageShare("jackal_description"), "urdf", "jackal.urdf.xacro"]
         ),
-        " ",
-        "gazebo_sim:=True",
-        " ",
-        "gazebo_controllers:=",
+        ' ',
+        'use_gazebo_controllers:=',
+        use_gazebo_controllers,
+        ' ',
+        'gazebo_sim:=True',
+        ' ',
+        'gazebo_controllers:=',
         config_jackal_velocity_controller,
     ]
 
@@ -153,41 +122,59 @@ def generate_launch_description():
 
     # Launch jackal_control/control.launch.py
     launch_jackal_control = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            PathJoinSubstitution(
-                [FindPackageShare("jackal_control"), "launch", "control.launch.py"]
-            )
-        ),
-        launch_arguments=[
-            ("robot_description_command", robot_description_command),
-            ("gazebo_sim", "True"),
-            ("config_jackal_velocity", config_jackal_velocity_controller),
-            ("config_jackal_localization", config_jackal_localization),
-        ],
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+            [FindPackageShare('jackal_control'), 'launch', 'control.launch.py']
+        )),
+        launch_arguments=[('robot_description_command', robot_description_command),
+                          ('gazebo_sim', 'True'),
+                          ('config_jackal_velocity',
+                           config_jackal_velocity_controller),
+                          ('config_jackal_localization',
+                           config_jackal_localization),
+                          ],
+        condition = IfCondition(use_gazebo_controllers)
     )
 
-    spawn_jackal_controllers = GroupAction(
-        [
-            Node(
-                package="controller_manager",
-                executable="spawner",
-                arguments=["jackal_velocity_controller", "-c", "/controller_manager"],
-                output="screen",
-            ),
-            Node(
-                package="controller_manager",
-                executable="spawner",
-                arguments=["joint_state_broadcaster", "-c", "/controller_manager"],
-                output="screen",
-            ),
-        ]
-    )
+    spawn_jackal_controllers = GroupAction([
+        Node(
+            package='controller_manager',
+            executable='spawner',
+            arguments=['jackal_velocity_controller',
+                       '-c', '/controller_manager'],
+            output='screen',
+            condition=IfCondition(use_gazebo_controllers),
+        ),
+        Node(
+            package='controller_manager',
+            executable='spawner',
+            arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
+            output='screen',
+            condition=IfCondition(use_gazebo_controllers),
+        )
+    ])
 
     # Make sure spawn_jackal_controllers starts after spawn_robot
     jackal_controllers_spawn_callback = RegisterEventHandler(
         OnProcessExit(
             target_action=spawn_robot,
             on_exit=[spawn_jackal_controllers],
+        )
+    )
+
+    stop_jackal_cmd = ['ros2 topic pub /stop/cmd_vel geometry_msgs/msg/Twist ',
+                       '"{ linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"', ]
+
+    stop_jackal = RegisterEventHandler(
+        OnProcessExit(
+            target_action=spawn_robot,
+            on_exit=[ExecuteProcess(
+                cmd=stop_jackal_cmd,
+                output='log',
+                shell=True,
+                on_exit=Shutdown(),
+                condition=UnlessCondition(
+                    use_gazebo_controllers)
+            )],
         )
     )
 
@@ -203,7 +190,7 @@ def generate_launch_description():
     )
 
     ld = LaunchDescription(ARGUMENTS)
-    ld.add_action(gz_resource_path)
+    # ld.add_action(gz_resource_path)
     ld.add_action(gzserver)
     ld.add_action(gzclient)
     ld.add_action(jackal_controllers_spawn_callback)
@@ -211,5 +198,6 @@ def generate_launch_description():
     ld.add_action(spawn_robot)
     ld.add_action(launch_jackal_control)
     ld.add_action(launch_jackal_teleop_base)
+    ld.add_action(stop_jackal)
 
     return ld
