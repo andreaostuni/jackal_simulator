@@ -44,6 +44,7 @@ def generate_launch_description():
             EnvironmentVariable("GAZEBO_MODEL_PATH", default_value=""),
             ":/usr/share/gazebo-11/models/:",
             str(Path(get_package_share_directory("jackal_description")).parent.resolve()),
+            ":/opt/ros/humble/share"
         ],
     )
 
