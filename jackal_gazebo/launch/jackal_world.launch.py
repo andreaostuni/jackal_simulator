@@ -9,12 +9,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     world_file = PathJoinSubstitution(
-        # ['tree_terrain2.world']
         ['scenario1.world']
-        # # [FindPackageShare('elevator_sim'),
-        # #  'worlds',
-        # #
-        # ['elevator_pic4ser.world'],
     )
 
     gazebo_launch = PathJoinSubstitution(
@@ -23,11 +18,14 @@ def generate_launch_description():
          'gazebo.launch.py'],
     )
 
+    world_arg = DeclareLaunchArgument(
+        'world', default_value=world_file, description='Gazebo world file')
+    
     gazebo_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([gazebo_launch]),
-        launch_arguments={'world_path': world}.items(),
+        launch_arguments={'world_path': LaunchConfiguration('world')}.items()
     )
-
+    
     ld = LaunchDescription()
     ld.add_action(world_arg)
     ld.add_action(gazebo_sim)
