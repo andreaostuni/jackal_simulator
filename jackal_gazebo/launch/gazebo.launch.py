@@ -14,7 +14,6 @@ from launch.substitutions import (
     FindExecutable,
     LaunchConfiguration,
     PathJoinSubstitution,
-    Command,
     PythonExpression,
 )
 from launch.event_handlers import OnProcessExit
@@ -28,10 +27,18 @@ from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
 
 ARGUMENTS = [
-    DeclareLaunchArgument("world_path", default_value="", description="The world path, by default is empty.world"),
-    DeclareLaunchArgument("prefix", default_value="", description="The prefix of the world file"),
     DeclareLaunchArgument(
-        "use_gazebo_controllers", default_value="True", description="Whether to start the gazebo controllers"
+        "world_path",
+        default_value="",
+        description="The world path, by default is empty.world",
+    ),
+    DeclareLaunchArgument(
+        "prefix", default_value="", description="The prefix of the world file"
+    ),
+    DeclareLaunchArgument(
+        "use_gazebo_controllers",
+        default_value="True",
+        description="Whether to start the gazebo controllers",
     ),
 ]
 
@@ -43,8 +50,9 @@ def generate_launch_description():
         value=[
             EnvironmentVariable("GAZEBO_MODEL_PATH", default_value=""),
             ":/usr/share/gazebo-11/models/:",
-            str(Path(get_package_share_directory("jackal_description")).parent.resolve()),
-            ":/opt/ros/humble/share"
+            str(
+                Path(get_package_share_directory("jackal_description")).parent.resolve()
+            ),
         ],
     )
 
@@ -64,13 +72,17 @@ def generate_launch_description():
         [FindPackageShare("jackal_gazebo"), "config", "localization.yaml"]
     )
 
-    config_twist_mux = PathJoinSubstitution([FindPackageShare("jackal_gazebo"), "config", "twist_mux.yaml"])
+    config_twist_mux = PathJoinSubstitution(
+        [FindPackageShare("jackal_gazebo"), "config", "twist_mux.yaml"]
+    )
 
     # Get URDF via xacro
     robot_description_command = [
         PathJoinSubstitution([FindExecutable(name="xacro")]),
         " ",
-        PathJoinSubstitution([FindPackageShare("jackal_description"), "urdf", "jackal.urdf.xacro"]),
+        PathJoinSubstitution(
+            [FindPackageShare("jackal_description"), "urdf", "jackal.urdf.xacro"]
+        ),
         " ",
         "use_gazebo_controllers:=",
         use_gazebo_controllers,
@@ -94,28 +106,12 @@ def generate_launch_description():
         launch_arguments=[("robot_description_command", robot_description_command)],
     )
 
-    # # Gazebo server
-    # gzserver = ExecuteProcess(
-    #     cmd=[
-    #         "gzserver",
-    #         "-s",
-    #         "libgazebo_ros_init.so",
-    #         "-s",
-    #         "libgazebo_ros_factory.so",
-    #         "--verbose",
-    #         world_path,
-    #     ],
-    #     output="screen",
-    # )
-
-    # # Gazebo client
-    # gzclient = ExecuteProcess(
-    #     cmd=["gzclient"],
-    #     output="screen",
-    # )
-
-    gz_server_launch_file = str(Path(get_package_share_directory("gazebo_ros"), "launch", "gzserver.launch.py"))
-    gz_client_launch_file = str(Path(get_package_share_directory("gazebo_ros"), "launch", "gzclient.launch.py"))
+    gz_server_launch_file = str(
+        Path(get_package_share_directory("gazebo_ros"), "launch", "gzserver.launch.py")
+    )
+    gz_client_launch_file = str(
+        Path(get_package_share_directory("gazebo_ros"), "launch", "gzclient.launch.py")
+    )
 
     gzserver = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([gz_server_launch_file]),
@@ -157,7 +153,9 @@ def generate_launch_description():
     # Launch jackal_control/control.launch.py
     launch_jackal_control = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([FindPackageShare("jackal_control"), "launch", "control.launch.py"])
+            PathJoinSubstitution(
+                [FindPackageShare("jackal_control"), "launch", "control.launch.py"]
+            )
         ),
         launch_arguments=[
             ("robot_description_command", robot_description_command),
@@ -219,15 +217,25 @@ def generate_launch_description():
     # the robot but does not include the joystick. Also, has a twist mux.
     launch_jackal_teleop_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([FindPackageShare("jackal_control"), "launch", "teleop_base.launch.py"])
+            PathJoinSubstitution(
+                [FindPackageShare("jackal_control"), "launch", "teleop_base.launch.py"]
+            )
         ),
         launch_arguments=[("config_twist_mux", config_twist_mux)],
     )
 
-    x_arg = DeclareLaunchArgument("x", default_value="0.0", description="Initial x position of the robot")
-    y_arg = DeclareLaunchArgument("y", default_value="0.0", description="Initial y position of the robot")
-    z_arg = DeclareLaunchArgument("z", default_value="0.0", description="Initial z position of the robot")
-    yaw_arg = DeclareLaunchArgument("yaw", default_value="0.0", description="Initial yaw of the robot")
+    x_arg = DeclareLaunchArgument(
+        "x", default_value="0.0", description="Initial x position of the robot"
+    )
+    y_arg = DeclareLaunchArgument(
+        "y", default_value="0.0", description="Initial y position of the robot"
+    )
+    z_arg = DeclareLaunchArgument(
+        "z", default_value="0.0", description="Initial z position of the robot"
+    )
+    yaw_arg = DeclareLaunchArgument(
+        "yaw", default_value="0.0", description="Initial yaw of the robot"
+    )
 
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(x_arg)
