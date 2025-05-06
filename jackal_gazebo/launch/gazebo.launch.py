@@ -40,6 +40,11 @@ ARGUMENTS = [
         default_value="True",
         description="Whether to start the gazebo controllers",
     ),
+    DeclareLaunchArgument(
+        "use_collision_sensor",
+        default_value="True",
+        description="Whether to use the collision sensor",
+    ),
 ]
 
 
@@ -60,6 +65,7 @@ def generate_launch_description():
     world_path = LaunchConfiguration("world_path")
     prefix = LaunchConfiguration("prefix")
     use_gazebo_controllers = LaunchConfiguration("use_gazebo_controllers")
+    use_collision_sensor = LaunchConfiguration("use_collision_sensor")
     use_sim_time = LaunchConfiguration("use_sim_time", default="True")
     gui = LaunchConfiguration("gui", default="True")
     headless = LaunchConfiguration("headless", default="False")
@@ -86,6 +92,9 @@ def generate_launch_description():
         " ",
         "use_gazebo_controllers:=",
         use_gazebo_controllers,
+        " ",
+        "use_collision_sensor:=",
+        use_collision_sensor,
         " ",
         "gazebo_sim:=True",
         " ",
